@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Series</title>
+    <script>
+        function generateFibonacci(){
+            const n = document.getElementById("numTerms").value;
+            if(n<=0){
+                document.getElementById("result").innerHTML = "Number should be greater than 0!";
+            }
+            else{
+                let fib = [];
+                fib[0] = 0;
+                fib[1] = 1;
+                for(let i=2;i<n;i++){
+                    fib[i]=fib[i-1]+fib[i-2];
+                }
+                console.log(fib);
+                document.getElementById("result").innerHTML = "Fibonacci Series: " + fib;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Fibonacci Series</h1>
+    <label for="numTerms">Enter the number of terms:</label>
+    <input type="number" id="numTerms" name="numTerms" min="1" value="1">
+    <button onclick="generateFibonacci()">Generate Fibonacci Series</button>
+    <p id="result"></p>
+</body>
+</html>
