@@ -1,0 +1,63 @@
+XML FILE
+<?xml version="1.0" encoding="UTF-8"?>
+<jewelryStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="jewel.xsd">
+    <jewelry>
+        <item>
+            <name>Diamond Ring</name>
+            <material>Gold</material>
+            <price>1000</price>
+        </item>
+        <item>
+            <name>Pearl Necklace</name>
+            <material>Silver</material>
+            <price>500</price>
+        </item>
+    </jewelry>
+</jewelryStore>
+
+XSD FILE
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="jewelryStore">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="jewelry" minOccurs="1" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="item" minOccurs="1" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="material" type="xs:string"/>
+<xs:element name="price" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+
+PYTHON FILE
+
+from lxml import etree
+
+
+schema_file = '/home/administrator/Desktop/TYCOD256/jewel.xsd'
+schema = etree.XMLSchema(etree.parse(schema_file))
+
+xml_file = '/home/administrator/Desktop/TYCOD256/jewel_store.xml'
+xml_doc = etree.parse(xml_file)
+
+if schema.validate(xml_doc):
+   print("Validation successful.")
+
+else:
+   print("Validation failed. Errors:")
+
+for error in schema.error_log:
+   print(error)

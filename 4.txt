@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <?php
+    $employees = array("Krishna","Anirudhha","Keshav","Madhav","Govind","Nandkishor","Hari","Sharvil","Natwar”,"Giridhar","Shyam","Murari","Vasudev","Gopal","Narayan","Vishnu","Ram","Raghav","Shantanu”,"Rankhambe");
+
+    // Check if a name exists in the array
+    if (isset($_GET['search_name']) && !empty($_GET['search_name']))
+    {
+        $search_name = $_GET['search_name'];
+        $result = in_array($search_name, $employees);
+        if ($result) {
+            echo "<p>{$search_name} is an employee.</p>";
+        }
+        else
+        {
+            echo "<p>{$search_name} is not found in the list of
+            employees.</p>";
+        }
+    }
+    ?> 
+
+    <!-- HTML form for user input -->
+    <form method="GET" action="">
+    <label for="search_name">Enter employee name:</label>
+    <input type="text" name="search_name" id="search_name" required>
+    <button type="submit">Search</button>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+Output:
+
+
+

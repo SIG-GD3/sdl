@@ -1,0 +1,75 @@
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+class Shape{
+    protected $name;
+    public function __construct($name){
+        $this->name=$name;
+    }
+    public function getname()  {
+        return $this->name;
+    }
+    public function CalcArea(){
+        return 0;
+    }
+
+}
+
+class Triangle extends Shape{
+    private $base,$height;
+    public function __construct($base,$height){
+        parent::__construct("Triangle");
+        $this->base=$base;
+        $this->height=$height;
+    }
+    public function CalcArea(){
+        return 0.5*$this->height * $this->base;
+    }
+}
+class Square extends Shape{
+    private $side;
+    public function __construct($side){
+        parent::__construct("Square");
+        $this->side=$side;
+    }
+    public function CalcArea(){
+        return $this->side * $this->side;
+    }
+}
+
+if(isset($_POST['shape'])){
+    $shapu=$_POST['shape'];
+    if($shapu==='triangle'){
+        $triangle=new Triangle(10,5);
+        echo "Area of ". $triangle->getname() .":". $triangle->CalcArea();
+    }
+    else if($shapu==='square'){
+        $s=new Square(7);
+        echo "area of ".$s->getname().":".$s->CalcArea();
+
+    }
+    else{
+        echo"Please Select A shape";
+    }
+}
+
+?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action="">
+        <h2>AREA CALC</h2>
+        <input type="radio" name="shape" value="triangle">Triangle
+        <input type="radio" name="shape" value="square">Square
+        <input type="submit" >
+    </form>
+</body>
+</html>
